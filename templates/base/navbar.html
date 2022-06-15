@@ -1,0 +1,75 @@
+{% load static %}
+<div class="sidebar close">
+
+    <div class="logo-details">
+        <div class="logo">
+            <img src="{% static 'images/logodorange.png' %}" alt="">
+        </div>
+        <span class="logo_name">HardeningApp</span>
+    </div>
+    <ul class="nav-links">
+
+        <li>
+            <a href="{% url 'bord' %}">
+                <i class='bx bx-home-alt icon'></i>
+                <span class="link_name">Accueil</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="{% url 'bord' %}">Accueil</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="{% url 'liste-procedure' %}">
+                <i class='bx bx-server'></i>
+                <span class="link_name">Durcissement</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="{% url 'liste-procedure' %}">Durcissement</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="{% url 'verifications_controle' %}">
+                <i class='bx bx-check-square'></i>
+                <span class="link_name">Vérification</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="{% url 'verifications_controle' %}">Vérification</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="iocn-link">
+                <a href="{% url 'liste_contrôles' %}">
+                    <i class='bx bx-cog'></i>
+                    <span class="link_name">Contrôles</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="{% url 'liste_contrôles' %}">Contrôles</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="{% url 'liste-log' %}">
+                <i class='bx bx-file'></i>
+                <span class="link_name">Logs</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="{% url 'liste-log' %}">Logs</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="profile-details">
+                <div class="profile-content">
+                    <img src="{% static 'images/profile.jpg' %}" alt="profileImg">
+                </div>
+                <div class="name-job">
+                    <div class="profile_name">Prem Shahi</div>
+                    <div class="job">Web Desginer</div>
+                </div>
+                <i class='bx bx-log-out' href="{% url 'oidc_logout' %}"></i>
+            </div>
+        </li>
+    </ul>
+</div>

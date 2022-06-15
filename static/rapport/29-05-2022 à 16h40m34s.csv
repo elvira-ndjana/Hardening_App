@@ -1,0 +1,2 @@
+Code;Procédure;Libellé;Resultat;Commentaires
+BAOD12;Experience;S'assurer que le mode SELinux est appliqué Commandes de durcissement : setenforce 1;OK;

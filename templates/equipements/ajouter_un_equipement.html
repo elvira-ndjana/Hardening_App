@@ -1,0 +1,90 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block contenu %}
+<section class="home-section voile h-100">
+    <div class="home-content bg-orange">
+        <i class='bx bx-menu text-light'></i>
+        <span class="text-center text-light text">Outil de gestion automatique du durcissement</span>
+    </div>
+    <div class="pt-3 ps-3 pe-3">
+        {% include 'base/messages.html' %}
+        <h4 class="text-center bg-dark text-light h-10">
+            Pour enrégistrer un équipement veuillez entrer les paramètres suivants:
+        </h4>
+        <div class="durcissement">
+            <div class="row">
+                <div class="col-md-6 ps-5 col-5 h-80">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide ps-5" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{% static 'images/Routeur1.jpg' %}" class="d-block w-80" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{% static 'images/Routeur2.jpg' %}" class="d-block w-80" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{% static 'images/Routeur3.jpg' %}" class="d-block w-80" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-9">
+                    <form method="POST" class="row g-1">
+                        {% csrf_token %}
+                        <div class="col-md-8">
+                            <label for="validationDefault01" class="form-label">Nom </label>
+                            <input name="nom" type="text" class="form-control" id="validationDefault01" value="" required>
+                        </div>
+
+                        <div class="col-md-8">
+                            <label for="validationDefaultUsername" class="form-label">Type</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="inputGroupPrepend2"></span>
+                                <select name="type" class="form-select" id="validationDefault04" required>
+                                    <option selected disabled value="">Choisir...</option>
+                                    <option>Serveur Linux</option>
+                                    <option>Serveur Windows</option>
+                                    <option>Routeur</option>
+                                    <option>Switch</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-8">
+                            <label for="validationDefault03" class="form-label">Nom d'utilisateur ssh</label>
+                            <input name="username" type="text" class="form-control" id="validationDefault03" required>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="validationDefault03" class="form-label">Mot de passe ssh</label>
+                            <input name="password" type="text" class="form-control" id="validationDefault03" required>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="validationDefault03" class="form-label">Adresse IP</label>
+                            <input name="adresseip" type="text" class="form-control" id="validationDefault03" required>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="validationDefault04" class="form-label">Système</label>
+                            <select name="systeme" class="form-select" id="validationDefault04" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option>Red Hat</option>
+                                <option>Windows</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-orange text-light fw-bolder" type="submit">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title> HardeningApp</title>
+    <link rel="icon" href="{% static 'images/logodorange.png' %}">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'style/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'style/styleHome.css' %}">
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static 'js/jquery.js' %}"></script>
+</head>
+<body>
+{% include 'base/navbar.html' %}
+
+{% block contenu %}
+{% endblock %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

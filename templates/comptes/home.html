@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block contenu %}
+
+<section class="home-section voile">
+    <div class="home-content bg-orange">
+        <i class='bx bx-menu text-light'></i>
+        <span class="text-center text-light text">Accueil</span>
+    </div>
+    <div class="pt-3 ps-3 pe-3">
+        <div class="cards">
+            <div class="card">
+                <div class="card-content">
+                    <div class="number durcissement">1217</div>
+                    <div class="card-name">Durcissement</div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <div class="number verifications">42</div>
+                    <div class="card-name">Vérification</div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <div class="number autres">68</div>
+                    <div class="card-name">Ajout/Suppression de contrôle</div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <div class="number conformite">4500</div>
+                    <div class="card-name">Correction des non conformités</div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+            </div>
+        </div>
+        <div class="charts">
+            <div class="chart">
+                <h2>Overview (des 12 mois)</h2>
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div class="chart doughnut-chart">
+                <h2>Activités</h2>
+                <canvas id="doughnut"></canvas>
+            </div>
+        </div>
+    </div>
+</session>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+<script src="{% static 'js/chart1.js' %}"></script>
+<script src="{% static 'js/chart2.js' %}"></script>
+{% endblock %}

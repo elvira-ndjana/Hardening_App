@@ -1,0 +1,36 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>Login form Design</title>
+             <link rel="stylesheet" type="text/css" href="{% static 'style/Style1.css' %}">
+    </head>
+
+    <body>
+        <div class="main">
+            <div class="part">
+                <div class="img_auth"> <img src="{% static 'images/pic3.PNG' %}" alt="photo_authentification" class="avatar"></div>
+                <div class="login_box">
+                    <form method="POST" action="">
+                        <h1 class="mess_bienvenue"> Welcome Back!</h1>
+                        <p class="champ" >
+                            <label for="Username">Username:</label>
+                            <input type="text">
+                        </p>
+                        <p class="champ">
+                            <label for="Password">Password:</label>
+                            <input type="password">
+                        </p>
+                        <p class="login">
+                            <input class="bouton" type="submit" value="Login">
+
+                        </p>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+</html>

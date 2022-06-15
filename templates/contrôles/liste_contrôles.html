@@ -1,0 +1,214 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block contenu %}
+<section class="home-section voile">
+    <div class="home-content bg-orange">
+        <i class='bx bx-menu text-light'></i>
+        <span class="text-center text-light text">Contrôles</span>
+    </div>
+    <div class="pt-3 ps-3 pe-3">
+        <h4 class="text-center bg-dark text-light h-10">
+            Liste des contrôles présents dans le système.
+        </h4>
+        <div class="equipements">
+            <div class="ms-1 row w-100" style="font-family:Arial, Helvetica, sans-serif">
+                <form class="flex mt-1 fw-bolder">
+                    <div class="input-group mb-1 w-25">
+                      <span class="input-group-text" style="height:30px; padding:2px">Code</span>
+                        <input type="text" class="form-control"
+                               style="height:30px;  padding-left:2px;" id="codeR"
+                               aria-label="Username" aria-describedby="basi1"/>
+                    </div>
+                    <div class="input-group ms-1 mb-1 w-40">
+                      <span class="input-group-text" style="height:30px; padding:2px">Default</span>
+                        <select class="form-control" id="defaultR" style="height:30px; padding:0px;" name="defaut">
+                            <option value=""> None</option>
+                            <option value="True"> OUI</option>
+                            <option value="false"> NON</option>
+                        </select>
+                    </div>
+                    <div class="input-group ms-1 mb-1 w-65">
+                      <span class="input-group-text" style="height:30px; padding:2px">Procédure</span>
+                        <input type="text" class="form-control w-15"
+                               style="height:30px; padding-left:2px;" id="procedureR"
+                               aria-label="Username" aria-describedby="basi1"/>
+                    </div>
+                    <div class="input-group ms-1 mb-1 w-40">
+                        <span class="input-group-text" style="height:30px; padding:2px">Equipement</span>
+                        <input type="text" class="form-control" style="height:30px; padding-left:2px;"
+                               id="equipementR" aria-label="Username" aria-describedby="basi1"/>
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-orange ms-1 rechercherControle"><img
+                            src="{% static 'images/rech.png' %}" width="14px" height="15px" alt=""></button>
+                    <button type="submit"
+                            class="btn btn-orange ms-1 voirListeControle"><img
+                            src="{% static 'images/remove.png' %}"
+                            width="14px" height="15px" alt=""></button>
+                    <button type="submit"
+                            class="btn btn-orange ms-1 ajouter-controle"><img
+                            src="{% static 'images/plus.png' %}"
+                            width="14px" height="15px" alt=""></button>
+                </form>
+                <div class="h-85">
+                    <table id="tableau" height="420px" class="table table-striped bg-light mt-2">
+                        <thead>
+                        <tr height="40px">
+                            <th scope="col">ID</th>
+                            <th scope="col">Code</th>
+                            <th scope="col">Equipement</th>
+                            <th scope="col">Default</th>
+                            <th scope="col">Libellé</th>
+                            <th scope="col">Procédure</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="contenu-table" style="font-size:12px" class="liste-controle">
+                            {% for controle in controles %}
+                            <tr height="40px">
+                                <th scope="row">{{controle.id}}</th>
+                                <td>{{controle.code}}</td>
+                                <td>{{controle.procedure.type_equipement}}</td>
+                                <td>{{controle.default}}</td>
+                                <td>{{controle.libelle}}</td>
+                                <td>{{controle.procedure.nom}}</td>
+                                <td>
+                                    <span class="flex mt-0">
+                                        <button class="btn-table btn-warning detail" width="14px" height="15px"  identifiant="{{controle.id}}" name="Détails"> Détail </button>
+                                        <button class="btn-table btn-warning ms-1 supprimer" width="14px" height="15px"  identifiant="{{controle.id}}" name="Supprimer"> X </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        <tr>
+                            <th scope="row"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <ul class="col-md-12 h-auto d-flex justify-content-center pagination " style="height: 0%;">
+
+                    </ul>
+                </div>
+
+                {% include 'base/pagination.html' %}
+
+            </div>
+        </div>
+    </div>
+    <form class="bg-dark" id="modaleControle" style="display: none;">
+        {% csrf_token %}
+        <div class="row ms-auto me-auto mt-2">
+            <div class="col-md-12 text-light police1 fw-bolder ">
+                <center>
+                    <h1 class="decoration-underlined">Ajout d'un Controle.</h1>
+                </center>
+            </div>
+            <center style="display: none;" class="fw-bolder msgControle"></center>
+            <div class="col-md-2 mt-2">
+                <label class="form-label text-light">Code </label>
+                <input name="code" type="text" class="form-control" id="code" value="" required>
+            </div>
+            <div class="col-md-8 mt-2">
+                <label class="form-label text-light">Libellé</label>
+                <input name="libelle" type="text" class="form-control" id="libelle"  required>
+            </div>
+            <div class="col-md-2 mt-2">
+                <label class="form-label text-light">Default</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="inputGroupPrepend2"></span>
+                    <select name="default" class="form-select" id="default" required>
+                        <option selected disabled value="">Choisir...</option>
+                        <option value="True">Oui</option>
+                        <option value="False">Non</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-md-12 mt-2">
+                <label  class="form-label text-light">Commande(s)</label>
+                <textarea class="form-control" name="commande"
+                          id="commande" style="height: 100px" required></textarea>
+            </div>
+            <div class="col-md-12 mt-2">
+                <label class="form-label text-light">Commande de verification</label>
+                <textarea class="form-control" name="verification"
+                          id="verification" style="height: 100px" required></textarea>
+            </div>
+            <div class="col-md-12 mt-2">
+                <label class="form-label text-light">Valeur(s) attendue(s)</label>
+                <textarea class="form-control" name="champVerification"
+                          id="champVerification" style="height: 100px" required></textarea>
+            </div>
+            <div class="col-md-5 ms-auto mt-2">
+                <label class="form-label text-light">Procédure</label>
+                <select name="procedure" class="form-select" id="procedure" required>
+                    <option selected disabled value="">Choose...</option>
+                    {% for procedure in procedures%}
+                    <option value="{{procedure.id}}">{{procedure.nom}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-5 mt-4">
+                    <button class="btn btn-orange mt-2 text-light enregistrer-controle fw-bolder" type="submit">Enregistrer</button>
+                    <button class="btn btn-orange mt-2 annuler-controle ms-2 text-light  fw-bolder" type="submit">Annuler</button>
+            </div>
+        </div>
+    </form>
+    <form class="bg-dark" id="modaleControleAffiche" style="display: none;">
+        {% csrf_token %}
+        <div class="row ms-auto me-auto mt-2">
+            <div class="col-md-12 text-light police1 fw-bolder ">
+                <center>
+                    <h1 class="decoration-underlined">Fiche de détail d'un contrôle.</h1>
+                </center>
+            </div>
+            <center style="display: none;" class="fw-bolder msgControle"></center>
+            <div class="col-md-2 mt-2">
+                <label class="form-label text-light">Code </label>
+                <input name="code" type="text" class="form-control" disabled="disabled" id="codeA" value="" required>
+            </div>
+            <div class="col-md-8 mt-2">
+                <label class="form-label text-light">Libellé</label>
+                <input name="libelle" type="text" class="form-control" disabled="disabled" id="libelleA"  required>
+            </div>
+            <div class="col-md-2 mt-2">
+                <label class="form-label text-light">Default</label>
+                <input name="code" type="text" class="form-control" disabled="disabled" id="defaultA" value="" required>
+
+            </div>
+            <div class="col-md-12 mt-2">
+                <label  class="form-label text-light">Commande(s)</label>
+                <p  class="bg-light ps-3 border-rounded" id="commandeA" ></p>
+            </div>
+            <div class="col-md-12 mt-2">
+                <label class="form-label text-light">Commande de verification</label>
+                <p class="bg-light ps-3" id="verificationA" ></p>
+            </div>
+            <div class="col-md-12 mt-2">
+                <label class="form-label text-light">Valeur(s) attendue(s)</label>
+                <p class="bg-light ps-3" id="champVerificationA" ></p>
+            </div>
+            <div class="col-md-5 ms-auto mt-2">
+                <label class="form-label text-light">Procédure</label>
+                <input name="code" type="text" class="form-control" disabled="disabled" id="procedureA" value="" required>
+
+            </div>
+            <div class="col-5 mt-4">
+                    <button class="btn btn-orange mt-2 annuler-controleA text-light  fw-bolder" type="submit">Retour</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<script src="{% static 'js/modal.js' %}"></script>
+<script src="{% static 'script_js/controle.js' %}"></script>
+{% endblock %}

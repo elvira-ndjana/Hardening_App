@@ -1,0 +1,2 @@
+Code;Procédure;Libellé;Valeur attendue;Valeur obtenue;Commentaires
+BAOD12;Experience;S'assurer que le mode SELinux est appliqué Commandes de durcissement : setenforce 1;SELINUX=enforcing;SELINUX=enforcing;
